@@ -2,32 +2,44 @@
     "use strict";
 
     angular.module("angular-search-box-test", ["angular-search-box"]).controller("testController", ["$scope", function ($scope) {
-        var ids = [];
-        for (var i = 1; i <= 10; ++i) {
-            ids.push(i);
-        }
-
-        $scope.projects = ids.map(function (id) {
+        var disciplines = [
+            "Business modelling",
+            "Requirements",
+            "Analysis and design",
+            "Implementation",
+            "Test",
+            "Deployment",
+            "Configuration and change management",
+            "Project management",
+            "Environment"
+        ].map(function (name) {
             return {
-                name: "" + id,
-                tasks: ids.map(function (id) {
-                    return {
-                        name: "" + id
-                    };
-                })
+                name: name
             };
         });
 
-        $scope.filterProject = function (project) {
-            if ($scope.searchingProject && $scope.projectNamePrefix) {
-                return project.name.toLowerCase().startsWith($scope.projectNamePrefix.toLowerCase());
+        $scope.phases = [
+            "Inception",
+            "Elaboration",
+            "Construction",
+            "Transition"
+        ].map(function (name) {
+            return {
+                name: name,
+                disciplines: disciplines
+            };
+        });
+
+        $scope.filterPhase = function (phase) {
+            if ($scope.filteringPhase && $scope.phaseNamePrefix) {
+                return phase.name.toLowerCase().startsWith($scope.phaseNamePrefix.toLowerCase());
             }
             return true;
         };
 
-        $scope.filterTask = function (task) {
-            if ($scope.searchingTask && $scope.taskNamePrefix) {
-                return task.name.toLowerCase().startsWith($scope.taskNamePrefix.toLowerCase());
+        $scope.filterDiscipline = function (discipline) {
+            if ($scope.filteringDiscipline && $scope.disciplineNamePrefix) {
+                return discipline.name.toLowerCase().startsWith($scope.disciplineNamePrefix.toLowerCase());
             }
             return true;
         };

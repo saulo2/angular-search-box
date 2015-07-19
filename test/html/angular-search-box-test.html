@@ -41,25 +41,25 @@
     <body ng-controller="testController">
         <div class="container">
             <div class="row">
-                <div class="col-lg-offset-4 col-lg-4">
+                <div class="col-lg-offset-3 col-lg-6">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>
-                                    <search-box label="Project" model="projectNamePrefix" searching="searchingProject"></search-box>
+                                    <search-box label="Phase" model="phaseNamePrefix" searching="filteringPhase"></search-box>
                                 </th>
                                 <th>
-                                    <search-box label="Task" model="taskNamePrefix" searching="searchingTask"></search-box>
+                                    <search-box label="Discipline" model="disciplineNamePrefix" searching="filteringDiscipline"></search-box>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody ng-repeat="project in projects | filter: filterProject">
-                            <tr ng-repeat="task in project.tasks | filter: filterTask">
+                        <tbody ng-repeat="phase in phases | filter: filterPhase">
+                            <tr ng-repeat="discipline in phase.disciplines | filter: filterDiscipline">
                                 <td>
-                                    {{project.name}}
+                                    {{phase.name}}
                                 </td>
                                 <td>
-                                    {{task.name}}
+                                    {{discipline.name}}
                                 </td>
                             </tr>
                         </tbody>
